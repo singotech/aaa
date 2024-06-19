@@ -43,12 +43,14 @@ function validateForm(event) {
     };
     console.log(formData);
 
-    fetch('https://script.google.com/macros/s/AKfycbz5MN2fw3xTKt5MLFgVZ7kY5IYSjQDrmzB18x2pXef2HR4ElGSsFgbHCFKHCJTfOEQ8/exec', {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "text/plain");
+
+    fetch('https://script.google.com/macros/s/AKfycby4GUN4mg5t5eZ8hWeVUqVuwSxLCM3JhslzTmjGJwQPCZokea31Q1R4dxOa_jF9PLS3/exec', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        headers: myHeaders,
+        body: JSON.stringify(formData),
+        redirect: "follow"
     })
     .then(response => response.json())
     .then(data => {
