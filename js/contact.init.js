@@ -43,7 +43,7 @@ function validateForm(event) {
     };
     console.log(formData);
 
-    fetch('https://script.google.com/macros/s/AKfycbxGvJsj8Y5SYzASwyqA747ocsFvwK4Sh50Kp5xLP_JtPbzb4uv6JZZP1RBtXL25zHZ3/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbz5MN2fw3xTKt5MLFgVZ7kY5IYSjQDrmzB18x2pXef2HR4ElGSsFgbHCFKHCJTfOEQ8/exec', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
