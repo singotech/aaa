@@ -33,30 +33,37 @@ function validateForm(event) {
         return false;
     }
 
-    const data = {
+    const formData = {
         name: name,
         email: email,
         phone: phone,
         domain: domain,
-        purpose: purpose
+        purpose: purpose,
+        recaptchaResponse: grecaptcha.getResponse()
     };
-    console.log(data);
+    console.log(formData);
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://webhook.site/55f366ec-21b8-4ea4-867d-86fece5eb162", true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState === XMLHttpRequest.DONE) {
-            if (xhttp.status === 200) {
-                document.getElementById("simple-msg").innerHTML = "Success! Your request has been submitted.";
-            } else {
-                document.getElementById("simple-msg").innerHTML = "Error! Something went wrong. Please try again.";
-            }
+    fetch('https://script.google.com/macros/s/AKfycbxGvJsj8Y5SYzASwyqA747ocsFvwK4Sh50Kp5xLP_JtPbzb4uv6JZZP1RBtXL25zHZ3/exec', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Form submitted successfully!');
+            document.getElementById('myForm').reset();
+            grecaptcha.reset(); // Reset reCAPTCHA
+        } else {
+            alert('Error: ' + data.message);
         }
-    };
-
-    xhttp.send(JSON.stringify(data));
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again later.');
+    });
 }
 
 function fadeIn() {
