@@ -46,7 +46,7 @@ function validateForm(event) {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "text/plain");
 
-    fetch('https://script.google.com/macros/s/AKfycbz3IA4nCUhiwKuWFv6Tl1jE_9JmAifbGci-XS2qJt71VVCf4DCfJqvSZK1k9LoxrUrs/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyinjTSUXdR6fpnem1WTJKAcXugfFfUldKk8HaKs-mka6EuGlAclAS6Hs4_Og2P6cU/exec', {
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify(formData),
